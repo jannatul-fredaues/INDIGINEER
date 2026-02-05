@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>INDIGINNER</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    height:100vh;
+    background:url("1.png") center/cover no-repeat;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+}
+
+
+
+/* logo image */
+.logo{
+    position:absolute;
+    top:30px;
+    left:50px;
+    z-index:2;
+}
+
+.logo img{
+    height:110px;   /* adjust size here */
+}
+
+/* center content */
+.hero{
+    position:absolute;
+    left:50px;      /* same left margin as logo */
+    top:50%;
+    transform:translateY(-50%);
+    text-align:left;
+    z-index:2;
+}
+.hero h1{
+    font-size:64px;
+    font-weight:300;
+    letter-spacing:2px;
+    margin-bottom:40px;
+    line-height:1.2;
+}
+/* button */
+.btn{
+    padding:18px 60px;
+    border:none;
+    border-radius:40px;
+    background:#5c636a;
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:#3f454b;
+    transform:scale(1.05);
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<!-- LOGO -->
+<div class="logo">
+    <img src="logo.png" alt="INDIGINNER">
+</div>
+
+<!-- CENTER TEXT -->
+<div class="hero">
+    <h1>Enter the Hidden <br> "Anime World”</h1>
+    <button class="btn">Let’s Keep IN</button>
+</div>
+
+</body>
+</html>
