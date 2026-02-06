@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>INDIGINEER</title>
+<style>
+:root {
+  --bg: #0b0b0f;
+  --text: #fff;
+  --card: #11111a;
+  --btn: #ff2c7d;
+}
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: Poppins, sans-serif;
+  transition: all 0.3s;
+}
+.card {
+  background-color: var(--card);
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 10px;
+}
+button {
+  background-color: var(--btn);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+.toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Light Mode Variables */
+body.light {
+  --bg: #f5f5f5;
+  --text: #111;
+  --card: #fff;
+  --btn: #ff2c7d;
+}
+</style>
+</head>
+<body>
+<div class="toggle" onclick="toggleMode()">🌗 Toggle Mode</div>
+
+<h1>Welcome to INDIGINEER</h1>
+
+<div class="card">Anime Card 1</div>
+<div class="card">Anime Card 2</div>
+
+<script>
+function toggleMode() {
+  document.body.classList.toggle('light');
+  // Save preference
+  localStorage.setItem('mode', document.body.classList.contains('light') ? 'light' : 'dark');
+}
+
+// Load saved preference
+if(localStorage.getItem('mode') === 'light'){
+  document.body.classList.add('light');
+}
+</script>
+</body>
+</html>
