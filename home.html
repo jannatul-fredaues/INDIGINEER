@@ -1,71 +1,184 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
+<title>INDIGNEER</title>
 <meta charset="UTF-8">
-<title>INDIGINEER</title>
+
 <style>
-:root {
-  --bg: #0b0b0f;
-  --text: #fff;
-  --card: #11111a;
-  --btn: #ff2c7d;
-}
-body {
-  background-color: var(--bg);
-  color: var(--text);
-  font-family: Poppins, sans-serif;
-  transition: all 0.3s;
-}
-.card {
-  background-color: var(--card);
-  padding: 15px;
-  margin: 10px 0;
-  border-radius: 10px;
-}
-button {
-  background-color: var(--btn);
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-}
-.toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  cursor: pointer;
-  font-weight: bold;
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+body{background:#0f172a;color:white}
+header{background:#020617;padding:15px 40px;display:flex;justify-content:space-between}
+.logo{font-size:28px;color:#22c55e;font-weight:bold}
+nav a{margin:0 15px;cursor:pointer}
+
+.container{width:85%;margin:auto;padding:30px}
+.page{display:none}
+.active{display:block}
+
+input,textarea{
+ width:100%;padding:10px;margin-top:10px;border:none;border-radius:8px
 }
 
-/* Light Mode Variables */
-body.light {
-  --bg: #f5f5f5;
-  --text: #111;
-  --card: #fff;
-  --btn: #ff2c7d;
+button{
+ padding:10px 18px;margin-top:10px;border:none;border-radius:8px;
+ background:#22c55e;color:white;cursor:pointer
+}
+
+.grid{
+ display:grid;
+ grid-template-columns:repeat(auto-fill,minmax(170px,1fr));
+ gap:20px;margin-top:20px;
+}
+
+.animeCard{
+ background:#1e293b;border-radius:12px;overflow:hidden;
+ cursor:pointer;transition:.3s
+}
+.animeCard:hover{transform:scale(1.05)}
+
+.animeCard img{width:100%;height:230px;object-fit:cover}
+.animeCard h3{padding:10px;font-size:16px}
+
+.reviewCard{
+ background:#1e293b;padding:15px;border-radius:12px;margin-top:15px
 }
 </style>
 </head>
+
 <body>
-<div class="toggle" onclick="toggleMode()">🌗 Toggle Mode</div>
 
-<h1>Welcome to INDIGINEER</h1>
+<header>
+  <div class="logo">INDIGNEER</div>
+  <nav>
+    <a onclick="showPage('home')">Home</a>
+    <a onclick="showPage('explore')">Explore Anime</a>
+    <a onclick="showPage('write')">Write Review</a>
+    <a onclick="showPage('trending')">Trending</a>
+  </nav>
+</header>
 
-<div class="card">Anime Card 1</div>
-<div class="card">Anime Card 2</div>
+<div class="container">
+
+<!-- HOME -->
+<div id="home" class="page active">
+  <h1>Anonymous Anime Reviews</h1>
+  <p>Search anime → click → write honest review</p>
+</div>
+
+<!-- EXPLORE ANIME (Aniwatch style) -->
+<div id="explore" class="page">
+  <h2>Search Anime</h2>
+  <input id="animeSearch" placeholder="Search anime like Naruto..." onkeyup="searchAnime()">
+  <div id="animeGrid" class="grid"></div>
+</div>
+
+<!-- WRITE REVIEW -->
+<div id="write" class="page">
+  <h2 id="selectedAnimeTitle">Write Review</h2>
+  <textarea id="reviewText" placeholder="Write brutally honest review..."></textarea>
+  <button onclick="postReview()">Post Review</button>
+
+  <h3>Reviews</h3>
+  <div id="reviews"></div>
+</div>
+
+<!-- TRENDING -->
+<div id="trending" class="page">
+  <h2>🔥 Popular Anime Right Now</h2>
+  <div id="trendingAnime" class="grid"></div>
+</div>
+
+</div>
 
 <script>
-function toggleMode() {
-  document.body.classList.toggle('light');
-  // Save preference
-  localStorage.setItem('mode', document.body.classList.contains('light') ? 'light' : 'dark');
+const API="http://127.0.0.1:5000";
+let selectedAnime="";
+
+// page navigation
+function showPage(id){
+ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
 }
 
-// Load saved preference
-if(localStorage.getItem('mode') === 'light'){
-  document.body.classList.add('light');
+// ⭐ SEARCH ANIME WITH POSTERS
+async function searchAnime(){
+ const q=document.getElementById("animeSearch").value;
+ if(q.length<2) return;
+
+ const res=await fetch(`https://api.jikan.moe/v4/anime?q=${q}&limit=12`);
+ const data=await res.json();
+
+ const grid=document.getElementById("animeGrid");
+ grid.innerHTML="";
+
+ data.data.forEach(anime=>{
+   grid.innerHTML+=`
+   <div class="animeCard" onclick="selectAnime('${anime.title}')">
+     <img src="${anime.images.jpg.image_url}">
+     <h3>${anime.title}</h3>
+   </div>`;
+ });
+}
+
+// select anime
+function selectAnime(title){
+ selectedAnime=title;
+ showPage('write');
+ document.getElementById("selectedAnimeTitle").innerText=title;
+ loadReviews();
+}
+
+// ⭐ POST REVIEW
+async function postReview(){
+ const review=document.getElementById("reviewText").value;
+ await fetch(`${API}/add-review`,{
+   method:"POST",
+   headers:{'Content-Type':'application/json'},
+   body:JSON.stringify({anime:selectedAnime,review})
+ });
+ loadReviews();
+}
+
+// ⭐ LOAD REVIEWS
+async function loadReviews(){
+ const res=await fetch(`${API}/reviews/${selectedAnime}`);
+ const data=await res.json();
+
+ const box=document.getElementById("reviews");
+ box.innerHTML="";
+
+ data.forEach(r=>{
+   box.innerHTML+=`
+   <div class="reviewCard">
+     ${r.review}
+     <br>👍 ${r.upvotes} 👎 ${r.downvotes}
+     <button onclick="vote(${r.id},'up')">Upvote</button>
+     <button onclick="vote(${r.id},'down')">Downvote</button>
+   </div>`;
+ });
+}
+
+// ⭐ TRENDING ANIME (top airing)
+async function loadTrendingAnime(){
+ const res=await fetch("https://api.jikan.moe/v4/top/anime");
+ const data=await res.json();
+
+ const grid=document.getElementById("trendingAnime");
+ data.data.slice(0,12).forEach(anime=>{
+   grid.innerHTML+=`
+   <div class="animeCard" onclick="selectAnime('${anime.title}')">
+     <img src="${anime.images.jpg.image_url}">
+     <h3>${anime.title}</h3>
+   </div>`;
+ });
+}
+loadTrendingAnime();
+
+async function vote(id,type){
+ await fetch(`${API}/vote/${id}/${type}`);
+ loadReviews();
 }
 </script>
+
 </body>
 </html>
