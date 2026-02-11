@@ -2,90 +2,246 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>INDIGINNER</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>INDIGINEER</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family:Poppins;
 }
 
 body{
-    height:100vh;
-    background:url("1.png") center/cover no-repeat;
+    background:#f3f3f3;
+    color:#111;
+    transition:0.4s;
+}
+
+.dark{
+    background:#0f0f0f;
+    color:#fff;
+}
+
+/* NAVBAR */
+
+nav{
     display:flex;
+    justify-content:space-between;
     align-items:center;
-    justify-content:center;
+    padding:20px 50px;
+}
+
+.logo{
+    font-size:26px;
+    font-weight:700;
+}
+
+.icons span{
+    margin-left:25px;
+    cursor:pointer;
+    font-size:22px;
+}
+
+/* HERO */
+
+.hero{
+    height:420px;
+    border-bottom-left-radius:60px;
+    border-bottom-right-radius:60px;
+    background:url("https://images.alphacoders.com/132/1328396.jpeg") center/cover;
     position:relative;
 }
 
-
-
-/* logo image */
-.logo{
+.overlay{
     position:absolute;
-    top:30px;
-    left:50px;
-    z-index:2;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.55);
+    border-bottom-left-radius:60px;
+    border-bottom-right-radius:60px;
 }
 
-.logo img{
-    height:110px;   /* adjust size here */
-}
-
-/* center content */
-.hero{
+.hero-text{
     position:absolute;
-    left:50px;      /* same left margin as logo */
-    top:50%;
-    transform:translateY(-50%);
-    text-align:left;
-    z-index:2;
-}
-.hero h1{
-    font-size:64px;
-    font-weight:300;
-    letter-spacing:2px;
-    margin-bottom:40px;
-    line-height:1.2;
-}
-/* button */
-.btn{
-    padding:18px 60px;
-    border:none;
-    border-radius:40px;
-    background:#5c636a;
+    bottom:60px;
+    left:60px;
     color:white;
-    font-size:20px;
+}
+
+.hero-text h1{
+    font-size:50px;
+}
+
+.hero-text p{
+    opacity:0.8;
+}
+
+/* DOT NAV */
+
+.slider-dots{
+    position:absolute;
+    right:25px;
+    top:150px;
+}
+
+.slider-dots div{
+    width:10px;
+    height:10px;
+    background:white;
+    margin:12px;
+    border-radius:50%;
+}
+
+/* GRID */
+
+.section{
+    padding:60px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:30px;
+}
+
+.card{
+    height:340px;
+    border-radius:25px;
+    overflow:hidden;
+    position:relative;
     cursor:pointer;
     transition:0.3s;
 }
 
-.btn:hover{
-    background:#3f454b;
+.card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.card:hover{
     transform:scale(1.05);
 }
+
+.card-info{
+    position:absolute;
+    bottom:0;
+    background:linear-gradient(transparent, black);
+    color:white;
+    width:100%;
+    padding:20px;
+}
+
+.card-info h3{
+    font-size:18px;
+}
+
+/* DARK MODE BUTTON */
+
+.toggle{
+    font-size:26px;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+.grid{
+    grid-template-columns:repeat(2,1fr);
+}
+.hero-text h1{font-size:30px;}
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="overlay"></div>
+<nav>
+    <div class="logo">INDIGINEER</div>
+    <div class="icons">
+        <span class="toggle" onclick="toggleMode()">🌙</span>
+        <span>🔍</span>
+        <span>🔔</span>
+        <span>👤</span>
+        <span>☰</span>
+    </div>
+</nav>
 
-<!-- LOGO -->
-<div class="logo">
-    <img src="logo.png" alt="INDIGINNER">
-</div>
+<section class="hero">
+    <div class="overlay"></div>
+    <div class="hero-text">
+        <h1>Attack On Titan</h1>
+        <p>Anonymous reviews powered by fans</p>
+    </div>
 
-<!-- CENTER TEXT -->
-<div class="hero">
-    <h1>Enter the Hidden <br> "Anime World”</h1>
-    <button class="btn">Let’s Keep IN</button>
-</div>
+    <div class="slider-dots">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</section>
+
+<section class="section">
+    <h2>🔥 Trending Anime Reviews</h2>
+    <br>
+
+    <div class="grid">
+
+        <div class="card">
+            <img src="https://images6.alphacoders.com/134/1342307.jpeg">
+            <div class="card-info"><h3>Jujutsu Kaisen</h3></div>
+        </div>
+
+        <div class="card">
+            <img src="https://images5.alphacoders.com/109/1099191.jpg">
+            <div class="card-info"><h3>Demon Slayer</h3></div>
+        </div>
+
+        <div class="card">
+            <img src="https://images3.alphacoders.com/132/1328395.jpeg">
+            <div class="card-info"><h3>Attack on Titan</h3></div>
+        </div>
+
+        <div class="card">
+            <img src="https://images2.alphacoders.com/133/1335167.png">
+            <div class="card-info"><h3>Solo Leveling</h3></div>
+        </div>
+
+        <div class="card">
+            <img src="https://images3.alphacoders.com/132/1328397.jpeg">
+            <div class="card-info"><h3>Chainsaw Man</h3></div>
+        </div>
+
+        <div class="card">
+            <img src="https://images7.alphacoders.com/133/1335125.jpeg">
+            <div class="card-info"><h3>Tokyo Revengers</h3></div>
+        </div>
+
+        <div class="card">
+            <img src="https://images2.alphacoders.com/131/1315046.jpeg">
+            <div class="card-info"><h3>Naruto</h3></div>
+        </div>
+
+        <div class="card">
+            <img src="https://images6.alphacoders.com/128/1288486.jpg">
+            <div class="card-info"><h3>One Piece</h3></div>
+        </div>
+
+    </div>
+</section>
+
+<script>
+
+function toggleMode(){
+    document.body.classList.toggle("dark")
+}
+
+</script>
 
 </body>
 </html>
