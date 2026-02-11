@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AI Score</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+<style>
+body{font-family:Poppins;background:#111;color:#fff;text-align:center}
+.card{margin-top:100px;background:#1e1e1e;padding:40px;border-radius:20px;display:inline-block}
+.score{font-size:70px;color:#00e676}
+button{margin-top:20px;padding:10px 25px;border:none;border-radius:10px;background:#ff4757;color:white}
+</style>
+</head>
+<body>
+
+<div class="card">
+    <h1>AI Review Score</h1>
+    <p>Analyzing 1,284 anonymous reviews...</p>
+    <div class="score" id="score">0</div>
+    <p>Overall Sentiment Score</p>
+    <button onclick="location.href='anime.html'">Back</button>
+</div>
+
+<script>
+let num=0;
+let interval=setInterval(()=>{
+    num++;
+    document.getElementById("score").innerText=num;
+    if(num==94) clearInterval(interval);
+},30);
+</script>
+
+</body>
+</html
