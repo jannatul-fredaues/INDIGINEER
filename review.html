@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Write Review</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+<style>
+body{font-family:Poppins;background:#0f0f0f;color:#fff;text-align:center}
+.box{margin-top:100px}
+textarea{width:60%;height:150px;border-radius:15px;padding:20px;font-size:16px}
+button{margin-top:20px;padding:12px 30px;border:none;border-radius:10px;background:#00c853;color:white;font-size:18px;cursor:pointer}
+</style>
+</head>
+<body>
+
+<div class="box">
+<h1>Write Anonymous Review</h1>
+<textarea placeholder="Write anything... No identity stored 🔒"></textarea><br>
+<button onclick="submitReview()">Submit Review</button>
+</div>
+
+<script>
+function submitReview(){
+    alert("Review submitted anonymously 🎉");
+    window.location.href="anime.html";
+}
+</script>
+
+</body>
+</html>
