@@ -14,17 +14,17 @@ Anime posters & titles displayed in grid (Aniwatch style)
 
 Trending anime browsing
 
-✍️ Anonymous Reviews
+Anonymous Reviews
 
 Anyone can post reviews without signing up
 
-Upvote / downvote system
+Upvote/downvote system
 
 Comment system for reviews
 
 Random anonymous avatars
 
-🤖 AI Rating System
+### AI Rating System
 
 AI score generated from community votes
 
