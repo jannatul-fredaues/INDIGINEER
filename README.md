@@ -8,21 +8,14 @@ This project uses a Flask backend and a single-file frontend SPA powered by the 
 
  ### Anime Discovery
 
-Live anime search using Jikan API
-
-Anime posters & titles displayed in grid (Aniwatch style)
-
-Trending anime browsing
-
-Anonymous Reviews
-
-Anyone can post reviews without signing up
-
-Upvote/downvote system
-
-Comment system for reviews
-
-Random anonymous avatars
+1. Live anime search using Jikan API
+2. Anime posters & titles displayed in grid (Aniwatch style)
+3.Trending anime browsing
+4.Anonymous Reviews
+5.Anyone can post reviews without signing up
+6.Upvote/downvote system
+7.Comment system for reviews
+8.Random anonymous avatars
 
 ### AI Rating System
 
