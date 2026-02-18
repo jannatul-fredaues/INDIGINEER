@@ -4,7 +4,7 @@ No login. No identity. Just honest opinions.
 
 This project uses a Flask backend and a single-file frontend SPA powered by the Jikan (MyAnimeList) API.
 
- ### Features
+ ## Features
 
  ### Anime Discovery
 1. Live anime search using Jikan API
@@ -29,7 +29,7 @@ AI score generated from community votes
 
 Rating updates automatically as reviews grow
 
-⭐ Watchlist
+### Watchlist
 
 Bookmark anime locally
 
