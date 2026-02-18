@@ -7,10 +7,9 @@ This project uses a Flask backend and a single-file frontend SPA powered by the 
  ### Features
 
  ### Anime Discovery
-
 1. Live anime search using Jikan API
-   
-3. Anime posters & titles displayed in grid (Aniwatch style)
+
+2. Anime posters & titles displayed in grid (Aniwatch style)
    
 3.Trending anime browsing
 
