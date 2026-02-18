@@ -35,7 +35,7 @@ Bookmark anime locally
 
 Stored using browser localStorage
 
-🌓 UI
+### UI
 
 Modern dark anime-style interface
 
