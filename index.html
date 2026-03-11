@@ -27,7 +27,7 @@ background:#0f0f0f;
 color:white;
 }
 
-/* NAV */
+/* NAVBAR */
 
 nav{
 display:flex;
@@ -77,11 +77,7 @@ color:white;
 font-size:50px;
 }
 
-.hero-text p{
-opacity:0.8;
-}
-
-/* SECTION */
+/* SECTIONS */
 
 .section{
 padding:60px;
@@ -136,34 +132,6 @@ border-radius:6px;
 margin-top:5px;
 }
 
-/* SIDEBAR */
-
-.sidebar{
-position:fixed;
-right:0;
-top:120px;
-width:220px;
-background:#1a1a1a;
-color:white;
-padding:20px;
-border-radius:20px 0 0 20px;
-}
-
-.sidebar h3{
-margin-bottom:10px;
-}
-
-.sidebar ul{
-list-style:none;
-margin-bottom:20px;
-}
-
-.sidebar li{
-margin-bottom:8px;
-font-size:14px;
-cursor:pointer;
-}
-
 /* MOBILE */
 
 @media(max-width:900px){
@@ -174,10 +142,6 @@ grid-template-columns:repeat(2,1fr);
 
 .hero-text h1{
 font-size:30px;
-}
-
-.sidebar{
-display:none;
 }
 
 }
@@ -325,31 +289,71 @@ display:none;
 
 </section>
 
-<!-- SIDEBAR -->
+<!-- TOP AIRING -->
 
-<div class="sidebar">
+<section class="section">
 
-<h3>🔥 Top Airing</h3>
+<h2>🔥 Top Airing</h2>
+<br>
 
-<ul>
-<li>Jujutsu Kaisen</li>
-<li>Solo Leveling</li>
-<li>Demon Slayer</li>
-<li>Attack on Titan</li>
-<li>Chainsaw Man</li>
-</ul>
+<div class="grid">
 
-<h3>⭐ Popular</h3>
+<div class="card">
+<img src="https://images6.alphacoders.com/134/1342307.jpeg">
+<div class="card-info"><h3>Jujutsu Kaisen</h3></div>
+</div>
 
-<ul>
-<li>Naruto</li>
-<li>One Piece</li>
-<li>Bleach</li>
-<li>Death Note</li>
-<li>Tokyo Revengers</li>
-</ul>
+<div class="card">
+<img src="https://images2.alphacoders.com/133/1335167.png">
+<div class="card-info"><h3>Solo Leveling</h3></div>
+</div>
+
+<div class="card">
+<img src="https://images5.alphacoders.com/109/1099191.jpg">
+<div class="card-info"><h3>Demon Slayer</h3></div>
+</div>
+
+<div class="card">
+<img src="https://images3.alphacoders.com/132/1328395.jpeg">
+<div class="card-info"><h3>Attack on Titan</h3></div>
+</div>
 
 </div>
+
+</section>
+
+<!-- POPULAR -->
+
+<section class="section">
+
+<h2>⭐ Popular Anime</h2>
+<br>
+
+<div class="grid">
+
+<div class="card">
+<img src="https://images2.alphacoders.com/131/1315046.jpeg">
+<div class="card-info"><h3>Naruto</h3></div>
+</div>
+
+<div class="card">
+<img src="https://images6.alphacoders.com/128/1288486.jpg">
+<div class="card-info"><h3>One Piece</h3></div>
+</div>
+
+<div class="card">
+<img src="https://images3.alphacoders.com/131/1316062.jpeg">
+<div class="card-info"><h3>Bleach</h3></div>
+</div>
+
+<div class="card">
+<img src="https://images7.alphacoders.com/737/737400.jpg">
+<div class="card-info"><h3>Death Note</h3></div>
+</div>
+
+</div>
+
+</section>
 
 <script>
 
@@ -357,9 +361,7 @@ function toggleMode(){
 document.body.classList.toggle("dark")
 }
 
-/* HERO SLIDER */
-
-const titles = [
+const titles=[
 "Attack On Titan",
 "Jujutsu Kaisen",
 "Demon Slayer",
