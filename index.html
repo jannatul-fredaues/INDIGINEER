@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>INDIGINEER</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -19,12 +20,12 @@ font-family:Poppins;
 body{
 background:#f3f3f3;
 color:#111;
-transition:0.4s;
+transition:.4s;
 }
 
 .dark{
 background:#0f0f0f;
-color:white;
+color:#fff;
 }
 
 /* NAVBAR */
@@ -43,8 +44,8 @@ font-weight:700;
 
 .icons span{
 margin-left:25px;
-cursor:pointer;
 font-size:22px;
+cursor:pointer;
 }
 
 /* HERO */
@@ -77,27 +78,54 @@ color:white;
 font-size:50px;
 }
 
-/* SECTIONS */
+/* SECTION */
 
 .section{
 padding:60px;
 }
 
+/* SECTION HEADER */
+
+.section-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:25px;
+}
+
+.section-header a{
+text-decoration:none;
+font-size:14px;
+font-weight:600;
+color:#ff4c4c;
+}
+
+.section-header a:hover{
+opacity:.7;
+}
+
+/* GRID */
+
 .grid{
 display:grid;
 grid-template-columns:repeat(4,1fr);
-gap:30px;
+gap:25px;
 }
 
-/* CARD */
+/* POSTER CARD */
 
 .card{
-height:340px;
-border-radius:25px;
+aspect-ratio:2/3;
+border-radius:18px;
 overflow:hidden;
 position:relative;
 cursor:pointer;
-transition:0.3s;
+transition:.3s;
+background:#111;
+}
+
+.card:hover{
+transform:scale(1.05);
 }
 
 .card img{
@@ -106,21 +134,19 @@ height:100%;
 object-fit:cover;
 }
 
-.card:hover{
-transform:scale(1.05);
-}
+/* POSTER TEXT */
 
 .card-info{
 position:absolute;
 bottom:0;
-background:linear-gradient(transparent, black);
-color:white;
 width:100%;
-padding:20px;
+padding:15px;
+background:linear-gradient(transparent,rgba(0,0,0,.95));
+color:white;
 }
 
 .card-info h3{
-font-size:18px;
+font-size:16px;
 }
 
 .card-info p{
@@ -129,7 +155,7 @@ background:#ff3d3d;
 display:inline-block;
 padding:3px 8px;
 border-radius:6px;
-margin-top:5px;
+margin-top:6px;
 }
 
 /* MOBILE */
@@ -178,12 +204,15 @@ font-size:30px;
 
 </section>
 
+
 <!-- TRENDING -->
 
 <section class="section">
 
+<div class="section-header">
 <h2>🔥 Trending Anime Reviews</h2>
-<br>
+<a href="#">View All →</a>
+</div>
 
 <div class="grid">
 
@@ -208,15 +237,17 @@ font-size:30px;
 </div>
 
 </div>
-
 </section>
+
 
 <!-- LATEST EPISODES -->
 
 <section class="section">
 
+<div class="section-header">
 <h2>🆕 Latest Episodes</h2>
-<br>
+<a href="#">View All →</a>
+</div>
 
 <div class="grid">
 
@@ -253,15 +284,17 @@ font-size:30px;
 </div>
 
 </div>
-
 </section>
+
 
 <!-- RECENTLY ADDED -->
 
 <section class="section">
 
+<div class="section-header">
 <h2>✨ Recently Added</h2>
-<br>
+<a href="#">View All →</a>
+</div>
 
 <div class="grid">
 
@@ -286,80 +319,16 @@ font-size:30px;
 </div>
 
 </div>
-
 </section>
 
-<!-- TOP AIRING -->
-
-<section class="section">
-
-<h2>🔥 Top Airing</h2>
-<br>
-
-<div class="grid">
-
-<div class="card">
-<img src="https://images6.alphacoders.com/134/1342307.jpeg">
-<div class="card-info"><h3>Jujutsu Kaisen</h3></div>
-</div>
-
-<div class="card">
-<img src="https://images2.alphacoders.com/133/1335167.png">
-<div class="card-info"><h3>Solo Leveling</h3></div>
-</div>
-
-<div class="card">
-<img src="https://images5.alphacoders.com/109/1099191.jpg">
-<div class="card-info"><h3>Demon Slayer</h3></div>
-</div>
-
-<div class="card">
-<img src="https://images3.alphacoders.com/132/1328395.jpeg">
-<div class="card-info"><h3>Attack on Titan</h3></div>
-</div>
-
-</div>
-
-</section>
-
-<!-- POPULAR -->
-
-<section class="section">
-
-<h2>⭐ Popular Anime</h2>
-<br>
-
-<div class="grid">
-
-<div class="card">
-<img src="https://images2.alphacoders.com/131/1315046.jpeg">
-<div class="card-info"><h3>Naruto</h3></div>
-</div>
-
-<div class="card">
-<img src="https://images6.alphacoders.com/128/1288486.jpg">
-<div class="card-info"><h3>One Piece</h3></div>
-</div>
-
-<div class="card">
-<img src="https://images3.alphacoders.com/131/1316062.jpeg">
-<div class="card-info"><h3>Bleach</h3></div>
-</div>
-
-<div class="card">
-<img src="https://images7.alphacoders.com/737/737400.jpg">
-<div class="card-info"><h3>Death Note</h3></div>
-</div>
-
-</div>
-
-</section>
 
 <script>
 
 function toggleMode(){
 document.body.classList.toggle("dark")
 }
+
+/* HERO TITLE SLIDER */
 
 const titles=[
 "Attack On Titan",
