@@ -1,127 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>INDIGINEER</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Poppins;
-}
-
 body{
-background:#f3f3f3;
-color:#111;
-transition:.4s;
-}
-
-.dark{
 background:#0f0f0f;
-color:#fff;
-}
-
-/* NAVBAR */
-
-nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 50px;
-}
-
-.logo{
-font-size:26px;
-font-weight:700;
-}
-
-.icons span{
-margin-left:25px;
-font-size:22px;
-cursor:pointer;
-}
-
-/* HERO */
-
-.hero{
-height:420px;
-border-bottom-left-radius:60px;
-border-bottom-right-radius:60px;
-background:url("https://images.alphacoders.com/132/1328396.jpeg") center/cover;
-position:relative;
-}
-
-.overlay{
-position:absolute;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.55);
-border-bottom-left-radius:60px;
-border-bottom-right-radius:60px;
-}
-
-.hero-text{
-position:absolute;
-bottom:60px;
-left:60px;
 color:white;
+font-family:Poppins;
+padding:30px;
 }
 
-.hero-text h1{
-font-size:50px;
+h1{
+margin-bottom:20px;
 }
-
-/* SECTION */
-
-.section{
-padding:60px;
-}
-
-/* SECTION HEADER */
-
-.section-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:25px;
-}
-
-.section-header a{
-text-decoration:none;
-font-size:14px;
-font-weight:600;
-color:#ff4c4c;
-}
-
-.section-header a:hover{
-opacity:.7;
-}
-
-/* GRID */
 
 .grid{
 display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:25px;
+grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+gap:20px;
 }
 
-/* POSTER CARD */
-
 .card{
-aspect-ratio:2/3;
-border-radius:18px;
+background:#1a1a1a;
+border-radius:10px;
 overflow:hidden;
-position:relative;
 cursor:pointer;
-transition:.3s;
-background:#111;
+transition:0.3s;
 }
 
 .card:hover{
@@ -130,46 +39,24 @@ transform:scale(1.05);
 
 .card img{
 width:100%;
-height:100%;
+height:250px;
 object-fit:cover;
 }
 
-/* POSTER TEXT */
-
-.card-info{
-position:absolute;
-bottom:0;
-width:100%;
-padding:15px;
-background:linear-gradient(transparent,rgba(0,0,0,.95));
-color:white;
+.info{
+padding:10px;
 }
 
-.card-info h3{
-font-size:16px;
+.search{
+padding:10px;
+width:250px;
+margin-bottom:20px;
 }
 
-.card-info p{
-font-size:12px;
-background:#ff3d3d;
-display:inline-block;
-padding:3px 8px;
-border-radius:6px;
-margin-top:6px;
-}
-
-/* MOBILE */
-
-@media(max-width:900px){
-
-.grid{
-grid-template-columns:repeat(2,1fr);
-}
-
-.hero-text h1{
-font-size:30px;
-}
-
+button{
+padding:10px 15px;
+margin:10px;
+cursor:pointer;
 }
 
 </style>
@@ -177,172 +64,120 @@ font-size:30px;
 
 <body>
 
-<nav>
+<h1>🔥 Top Anime</h1>
 
-<div class="logo">INDIGINEER</div>
+<div class="grid" id="topAnime"></div>
 
-<div class="icons">
-<span onclick="toggleMode()">🌙</span>
-<span>🔍</span>
-<span>🔔</span>
-<span>👤</span>
-<span>☰</span>
-</div>
+<h1>📚 All Anime</h1>
 
-</nav>
+<input class="search" id="search" placeholder="Search anime...">
 
-<!-- HERO -->
+<div class="grid" id="animeList"></div>
 
-<section class="hero">
-
-<div class="overlay"></div>
-
-<div class="hero-text">
-<h1 id="heroTitle">Attack On Titan</h1>
-<p>Anonymous anime reviews powered by fans</p>
-</div>
-
-</section>
-
-
-<!-- TRENDING -->
-
-<section class="section">
-
-<div class="section-header">
-<h2>🔥 Trending Anime Reviews</h2>
-<a href="viewall.html">View All →</a>
-</div>
-
-<div class="grid">
-
-<div class="card">
-<img src="https://images6.alphacoders.com/134/1342307.jpeg">
-<div class="card-info"><h3>Jujutsu Kaisen</h3></div>
-</div>
-
-<div class="card">
-<img src="https://images5.alphacoders.com/109/1099191.jpg">
-<div class="card-info"><h3>Demon Slayer</h3></div>
-</div>
-
-<div class="card">
-<img src="https://images3.alphacoders.com/132/1328395.jpeg">
-<div class="card-info"><h3>Attack on Titan</h3></div>
-</div>
-
-<div class="card">
-<img src="https://images2.alphacoders.com/133/1335167.png">
-<div class="card-info"><h3>Solo Leveling</h3></div>
-</div>
-
-</div>
-</section>
-
-
-<!-- LATEST EPISODES -->
-
-<section class="section">
-
-<div class="section-header">
-<h2>🆕 Latest Episodes</h2>
-<a href="viewall.html">View All →</a>
-</div>
-
-<div class="grid">
-
-<div class="card">
-<img src="https://images6.alphacoders.com/134/1342307.jpeg">
-<div class="card-info">
-<h3>Jujutsu Kaisen</h3>
-<p>Episode 24</p>
-</div>
-</div>
-
-<div class="card">
-<img src="https://images5.alphacoders.com/109/1099191.jpg">
-<div class="card-info">
-<h3>Demon Slayer</h3>
-<p>Episode 11</p>
-</div>
-</div>
-
-<div class="card">
-<img src="https://images2.alphacoders.com/133/1335167.png">
-<div class="card-info">
-<h3>Solo Leveling</h3>
-<p>Episode 9</p>
-</div>
-</div>
-
-<div class="card">
-<img src="https://images3.alphacoders.com/132/1328397.jpeg">
-<div class="card-info">
-<h3>Chainsaw Man</h3>
-<p>Episode 12</p>
-</div>
-</div>
-
-</div>
-</section>
-
-
-<!-- RECENTLY ADDED -->
-
-<section class="section">
-
-<div class="section-header">
-<h2>✨ Recently Added</h2>
-<a href="viewall.html">View All →</a>
-</div>
-
-<div class="grid">
-
-<div class="card">
-<img src="https://images6.alphacoders.com/128/1288486.jpg">
-<div class="card-info"><h3>One Piece</h3></div>
-</div>
-
-<div class="card">
-<img src="https://images7.alphacoders.com/133/1335125.jpeg">
-<div class="card-info"><h3>Tokyo Revengers</h3></div>
-</div>
-
-<div class="card">
-<img src="https://images2.alphacoders.com/131/1315046.jpeg">
-<div class="card-info"><h3>Naruto</h3></div>
-</div>
-
-<div class="card">
-<img src="https://images3.alphacoders.com/132/1328397.jpeg">
-<div class="card-info"><h3>Chainsaw Man</h3></div>
-</div>
-
-</div>
-</section>
-
+<button onclick="prevPage()">Prev</button>
+<button onclick="nextPage()">Next</button>
 
 <script>
 
-function toggleMode(){
-document.body.classList.toggle("dark")
+let page = 1
+let animeData = []
+
+async function loadTopAnime(){
+
+const res = await fetch("https://api.jikan.moe/v4/top/anime?limit=12")
+
+const data = await res.json()
+
+displayAnime(data.data,"topAnime")
+
 }
 
-/* HERO TITLE SLIDER */
+async function loadAnime(){
 
-const titles=[
-"Attack On Titan",
-"Jujutsu Kaisen",
-"Demon Slayer",
-"Solo Leveling"
-]
+const res = await fetch(`https://api.jikan.moe/v4/anime?page=${page}`)
 
-let i=0
+const data = await res.json()
 
-setInterval(()=>{
-document.getElementById("heroTitle").innerText=titles[i]
-i=(i+1)%titles.length
-},3000)
+animeData = data.data
+
+displayAnime(animeData,"animeList")
+
+}
+
+function displayAnime(list,id){
+
+const container = document.getElementById(id)
+
+container.innerHTML=""
+
+list.forEach(anime=>{
+
+const card = document.createElement("div")
+
+card.className="card"
+
+card.onclick=()=>{
+
+window.location="details.html?id="+anime.mal_id
+
+}
+
+card.innerHTML=`
+
+<img src="${anime.images.jpg.image_url}">
+
+<div class="info">
+
+<h4>${anime.title}</h4>
+
+<p>⭐ ${anime.score || "N/A"}</p>
+
+</div>
+
+`
+
+container.appendChild(card)
+
+})
+
+}
+
+function nextPage(){
+
+page++
+
+loadAnime()
+
+}
+
+function prevPage(){
+
+if(page>1){
+
+page--
+
+loadAnime()
+
+}
+
+}
+
+document.getElementById("search").addEventListener("input",(e)=>{
+
+const value = e.target.value.toLowerCase()
+
+const filtered = animeData.filter(a =>
+
+a.title.toLowerCase().includes(value)
+
+)
+
+displayAnime(filtered,"animeList")
+
+})
+
+loadTopAnime()
+loadAnime()
 
 </script>
 
