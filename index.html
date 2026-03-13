@@ -1,22 +1,97 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>INDIGINEER</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
 body{
 background:#0f0f0f;
 color:white;
-font-family:Poppins;
-padding:30px;
+padding:40px;
 }
 
-h1{
+/* NAVBAR */
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:30px;
+}
+
+.logo{
+font-size:28px;
+font-weight:600;
+}
+
+/* TOP ANIME */
+
+.top-anime{
+margin-bottom:50px;
+}
+
+.top-anime h2{
 margin-bottom:20px;
+}
+
+.top-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+}
+
+.top-card{
+position:relative;
+border-radius:15px;
+overflow:hidden;
+cursor:pointer;
+}
+
+.top-card img{
+width:100%;
+height:220px;
+object-fit:cover;
+transition:0.3s;
+}
+
+.top-card:hover img{
+transform:scale(1.1);
+}
+
+.top-info{
+position:absolute;
+bottom:0;
+left:0;
+right:0;
+background:linear-gradient(transparent,rgba(0,0,0,0.8));
+padding:15px;
+}
+
+.top-info h3{
+font-size:16px;
+margin-bottom:5px;
+}
+
+.top-info p{
+font-size:13px;
+}
+
+/* ALL ANIME */
+
+h2{
+margin:40px 0 20px;
 }
 
 .grid{
@@ -47,16 +122,30 @@ object-fit:cover;
 padding:10px;
 }
 
+.info h4{
+font-size:14px;
+margin-bottom:5px;
+}
+
+/* SEARCH */
+
 .search{
 padding:10px;
 width:250px;
 margin-bottom:20px;
+border:none;
+border-radius:5px;
 }
+
+/* PAGINATION */
 
 button{
 padding:10px 15px;
-margin:10px;
+margin-top:20px;
+margin-right:10px;
 cursor:pointer;
+border:none;
+border-radius:5px;
 }
 
 </style>
@@ -64,11 +153,25 @@ cursor:pointer;
 
 <body>
 
-<h1>🔥 Top Anime</h1>
+<!-- NAVBAR -->
 
-<div class="grid" id="topAnime"></div>
+<div class="navbar">
+<div class="logo">INDIGINEER</div>
+</div>
 
-<h1>📚 All Anime</h1>
+<!-- TOP 9 ANIME -->
+
+<section class="top-anime">
+
+<h2>🔥 Top Anime</h2>
+
+<div class="top-grid" id="topAnime"></div>
+
+</section>
+
+<!-- ALL ANIME -->
+
+<h2>📚 All Anime</h2>
 
 <input class="search" id="search" placeholder="Search anime...">
 
@@ -82,15 +185,43 @@ cursor:pointer;
 let page = 1
 let animeData = []
 
+/* LOAD TOP 9 ANIME */
+
 async function loadTopAnime(){
 
-const res = await fetch("https://api.jikan.moe/v4/top/anime?limit=12")
+const res = await fetch("https://api.jikan.moe/v4/top/anime?limit=9")
 
 const data = await res.json()
 
-displayAnime(data.data,"topAnime")
+const container = document.getElementById("topAnime")
+
+container.innerHTML=""
+
+data.data.forEach(anime=>{
+
+const card = document.createElement("div")
+
+card.className="top-card"
+
+card.innerHTML = `
+<img src="${anime.images.jpg.large_image_url}">
+<div class="top-info">
+<h3>${anime.title}</h3>
+<p>⭐ ${anime.score}</p>
+</div>
+`
+
+card.onclick = () =>{
+window.location="details.html?id="+anime.mal_id
+}
+
+container.appendChild(card)
+
+})
 
 }
+
+/* LOAD ANIME LIST */
 
 async function loadAnime(){
 
@@ -100,13 +231,15 @@ const data = await res.json()
 
 animeData = data.data
 
-displayAnime(animeData,"animeList")
+displayAnime(animeData)
 
 }
 
-function displayAnime(list,id){
+/* DISPLAY ANIME */
 
-const container = document.getElementById(id)
+function displayAnime(list){
+
+const container = document.getElementById("animeList")
 
 container.innerHTML=""
 
@@ -116,25 +249,17 @@ const card = document.createElement("div")
 
 card.className="card"
 
-card.onclick=()=>{
-
-window.location="details.html?id="+anime.mal_id
-
-}
-
 card.innerHTML=`
-
 <img src="${anime.images.jpg.image_url}">
-
 <div class="info">
-
 <h4>${anime.title}</h4>
-
 <p>⭐ ${anime.score || "N/A"}</p>
-
 </div>
-
 `
+
+card.onclick = ()=>{
+window.location="details.html?id="+anime.mal_id
+}
 
 container.appendChild(card)
 
@@ -142,39 +267,35 @@ container.appendChild(card)
 
 }
 
-function nextPage(){
-
-page++
-
-loadAnime()
-
-}
-
-function prevPage(){
-
-if(page>1){
-
-page--
-
-loadAnime()
-
-}
-
-}
+/* SEARCH */
 
 document.getElementById("search").addEventListener("input",(e)=>{
 
 const value = e.target.value.toLowerCase()
 
 const filtered = animeData.filter(a =>
-
 a.title.toLowerCase().includes(value)
-
 )
 
-displayAnime(filtered,"animeList")
+displayAnime(filtered)
 
 })
+
+/* PAGINATION */
+
+function nextPage(){
+page++
+loadAnime()
+}
+
+function prevPage(){
+if(page>1){
+page--
+loadAnime()
+}
+}
+
+/* INITIAL LOAD */
 
 loadTopAnime()
 loadAnime()
