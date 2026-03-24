@@ -6,6 +6,9 @@ from datetime import datetime
 app = Flask(__name__)
 CORS(app)
 
+#----------------------
+# Anime API
+#----------------------
 FILE="reviews.json"
 
 if not os.path.exists(FILE):
